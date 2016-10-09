@@ -45,11 +45,12 @@ public class ConverterImpl implements Converter{
 	@Override
 	public String getFromJson(String fileName) throws FileNotFoundException, IOException, ParseException {
 		JSONParser parser = new JSONParser();
-        JSONArray obj = (JSONArray) parser.parse(new FileReader(DEFAULT_PATH+fileName));
+        JSONArray obj = (JSONArray) parser.parse(new FileReader(DEFAULT_PATH+fileName));//get array of JSON objects
        	String result="";
        	for(Object o : obj){ 	
-           JSONObject jsonObject =  (JSONObject) o;
+           JSONObject jsonObject =  (JSONObject) o;//get each object from array
 
+	   //assign information from objects
            Long maxHoleSize = (Long) jsonObject.get("max-hole-size");           
            Long packetsServiced = (Long) jsonObject.get("packets-serviced");
            Long packetsRequested = (Long) jsonObject.get("packets-requested");
@@ -69,7 +70,7 @@ public class ConverterImpl implements Converter{
 	@Override
 	public String getFromXml(String fileName) throws TransformerException, ParserConfigurationException,
 	SAXException, IOException {
-		File stylesheet = new File(DEFAULT_PATH+"style.xsl");
+		File stylesheet = new File(DEFAULT_PATH+"style.xsl");//style sheet used from converting xml to csv.
         File xmlSource = new File(DEFAULT_PATH+fileName);
 
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
@@ -92,7 +93,7 @@ public class ConverterImpl implements Converter{
 	public String getFromCsv(String fileName) throws IOException {
 		return readFile(DEFAULT_PATH+"reports.csv", StandardCharsets.UTF_8);
 	}
-	private String readFile(String path, Charset encoding) throws IOException{
+	private String readFile(String path, Charset encoding) throws IOException{//readFile made into own method for possible future use.
 		byte[] encoded = Files.readAllBytes(Paths.get(path));
 		return new String(encoded, encoding);
 	}
@@ -115,9 +116,9 @@ public class ConverterImpl implements Converter{
 	
 	private String getDateTime(Long epochTime){
 		Date date = new Date(epochTime);
-        DateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss zzz");
+        DateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss zzz");//Expected Output: 2016-06-28 19:06:50 ADT
         format.setTimeZone(TimeZone.getTimeZone("Canada/Atlantic"));
-        String formatted = format.format(date);//2016-06-28 19:06:50 ADT
+        String formatted = format.format(date);
         return formatted;
 	}
 
