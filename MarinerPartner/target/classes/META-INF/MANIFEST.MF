@@ -1,0 +1,8 @@
+Manifest-Version: 1.0
+Built-By: iMoqii
+Class-Path: dependency-jars/json-simple-1.1.jar dependency-jars/opencs
+ v-3.7.jar dependency-jars/commons-lang3-3.3.2.jar
+Build-Jdk: 1.8.0_101
+Created-By: Maven Integration for Eclipse
+Main-Class: main.java.DataSorting
+
