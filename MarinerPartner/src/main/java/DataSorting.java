@@ -55,7 +55,7 @@ public class DataSorting {
 	static void sort(List<ArrayList<String>> csvLines){
 		Comparator<ArrayList<String>> comp = new Comparator<ArrayList<String>>() {
 		    public int compare(ArrayList<String> csvLine1, ArrayList<String> csvLine2) {
-		        return csvLine2.get(2).compareTo(csvLine1.get(2));//comparing dates, what's up with JSON dates?
+		        return csvLine2.get(2).compareTo(csvLine1.get(2));//comparing dates
 		    }
 		};
 		Collections.sort(csvLines, comp);
